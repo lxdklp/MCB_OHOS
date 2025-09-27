@@ -1,16 +1,9 @@
-# mcb_ohos
+<p align="center"><img src="./assets/img/icon/icon.png"  width="20%" /><img src="./assets/img/logo/flutter.png"  width="25%" /></p>
 
-A new Flutter project.
+# Minecraft Box
 
-## Getting Started
+一个由Flutter编写的Material Design 3风格的使用GPL3.0协议开源跨平台 Minecraft Java 服务器管理工具,支持Android、iOS、macOS、Windows、Linux、Web
 
-This project is a starting point for a Flutter application.
+[原版](https://github.com/lxdklp/MCB)
 
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+###### flutter logo : [Sawaratsuki](https://github.com/SAWARATSUKI)
