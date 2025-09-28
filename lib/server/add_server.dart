@@ -370,7 +370,7 @@ class AddServerPageState extends State<AddServerPage> {
                         decoration: InputDecoration(
                           labelText: '密码',
                           hintText: '请输入 RCON 密码',
-                          border: OutlineInputBorder(),
+                          border: const OutlineInputBorder(),
                           suffixIcon: IconButton(
                             icon: Icon(_obscurePassword ? Icons.visibility : Icons.visibility_off),
                             onPressed: _togglePasswordVisibility,
@@ -387,12 +387,10 @@ class AddServerPageState extends State<AddServerPage> {
           ],
         ),
       ),
-      /*
       floatingActionButton: FloatingActionButton(
         onPressed: _saveServer,
         child: const Icon(Icons.save),
       ),
-      */
     );
   }
 }

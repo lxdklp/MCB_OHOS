@@ -1420,7 +1420,7 @@ class ServerManagementPageState extends State<ServerManagementPage> {
               children: [
                 const Text('发送全服消息', style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
                 const SizedBox(height: 16),
-                Row(
+                Wrap(
                   children: [
                     const Text('消息类型:', style: TextStyle(fontWeight: FontWeight.bold)),
                     const SizedBox(width: 16),
@@ -2117,7 +2117,7 @@ class ServerManagementPageState extends State<ServerManagementPage> {
                   return ListTile(
                     leading: CircleAvatar(
                       backgroundColor: isOnline ? Colors.green : Colors.grey,
-                      child: Icon(
+                      child: const Icon(
                         Icons.person,
                         color: Colors.white,
                       ),

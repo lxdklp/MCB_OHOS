@@ -423,7 +423,7 @@ class EditServerPageState extends State<EditServerPage> {
                       decoration: InputDecoration(
                         labelText: '密码',
                         hintText: '请输入 RCON 密码',
-                        border: OutlineInputBorder(),
+                        border: const OutlineInputBorder(),
                         suffixIcon: IconButton(
                           icon: Icon(_obscurePassword ? Icons.visibility : Icons.visibility_off),
                           onPressed: _togglePasswordVisibility,
@@ -439,7 +439,6 @@ class EditServerPageState extends State<EditServerPage> {
           const SizedBox(height: 150),
         ],
       ),
-      /*
       floatingActionButton: Column(
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
@@ -456,7 +455,6 @@ class EditServerPageState extends State<EditServerPage> {
           ),
         ],
       ),
-      */
     );
   }
 }

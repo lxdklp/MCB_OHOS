@@ -32,7 +32,7 @@ class SettingPageState extends State<SettingPage> {
           ),
           ),Card(
             child: ListTile(
-              leading: Icon(Icons.info),
+              leading: const Icon(Icons.info),
               title: const Text('\n关于\n'),
               trailing: const Icon(Icons.chevron_right),
               onTap: () {

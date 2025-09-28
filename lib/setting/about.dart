@@ -60,7 +60,7 @@ class AboutPageState extends State<AboutPage> {
               child: Center(
                 child: Column(
                   children: [
-                    Text(
+                    const Text(
                       '\n本项目使用GPL3.0协议开源,使用过程中请遵守GPL3.0协议\n',
                       style: TextStyle(
                         fontSize: 20,
@@ -89,13 +89,13 @@ class AboutPageState extends State<AboutPage> {
                     const SizedBox(height: 16), // 图片和文字之间的间距
                     Text(
                       'Minecraft Box Version $_appVersion OHOS',
-                      style: TextStyle(
+                      style: const TextStyle(
                         fontSize: 17,
                         fontWeight: FontWeight.bold,
                       ),
                       textAlign: TextAlign.center,
                     ),
-                    Text(
+                    const Text(
                       'Copyright © 2025 lxdklp. All rights reserved\n',
                       style: TextStyle(
                         fontSize: 15,

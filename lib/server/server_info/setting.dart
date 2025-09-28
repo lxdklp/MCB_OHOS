@@ -252,7 +252,7 @@ class ServerSettingPageState extends State<ServerSettingPage> {
     try {
       await widget.network.callAPI('$endpoint/set', [value]);
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('设置已更新')),
+        const SnackBar(content: Text('设置已更新')),
       );
     } catch (e) {
       ScaffoldMessenger.of(context).showSnackBar(
@@ -267,7 +267,7 @@ class ServerSettingPageState extends State<ServerSettingPage> {
     try {
       await widget.network.callAPI('$endpoint/set', [value]);
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('设置已更新')),
+        const SnackBar(content: Text('设置已更新')),
       );
     } catch (e) {
       ScaffoldMessenger.of(context).showSnackBar(
@@ -282,7 +282,7 @@ class ServerSettingPageState extends State<ServerSettingPage> {
     try {
       await widget.network.callAPI('$endpoint/set', [value]);
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('设置已更新')),
+        const SnackBar(content: Text('设置已更新')),
       );
     } catch (e) {
       ScaffoldMessenger.of(context).showSnackBar(
@@ -315,7 +315,7 @@ class ServerSettingPageState extends State<ServerSettingPage> {
           children: [
             Text(
               _errorMessage,
-              style: TextStyle(color: Colors.red),
+              style: const TextStyle(color: Colors.red),
               textAlign: TextAlign.center,
             ),
             const SizedBox(height: 16),
@@ -961,7 +961,7 @@ Widget _buildOperatorPermissionSetting() {
             border: OutlineInputBorder(),
             contentPadding: EdgeInsets.symmetric(horizontal: 12, vertical: 12),
           ),
-          items: [
+          items: const [
             DropdownMenuItem(
               value: 1,
               child: Text('1 - Moderator'),

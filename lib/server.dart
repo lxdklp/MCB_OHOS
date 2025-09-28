@@ -73,12 +73,10 @@ class ServerPageState extends State<ServerPage> {
           : _serverList.isEmpty
               ? _buildEmptyView()
               : _buildServerList(),
-      /*
       floatingActionButton: FloatingActionButton(
         onPressed: _addServer,
         child: const Icon(Icons.add),
       ),
-      */
     );
   }
 
@@ -88,7 +86,7 @@ class ServerPageState extends State<ServerPage> {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Icon(
+          const Icon(
             Icons.dns_outlined,
             size: 80,
           ),
@@ -98,7 +96,7 @@ class ServerPageState extends State<ServerPage> {
             style: Theme.of(context).textTheme.headlineSmall,
           ),
           const SizedBox(height: 8),
-          Text('点击下方按钮添加服务器'),
+          const Text('点击下方按钮添加服务器'),
         ],
       ),
     );

@@ -538,8 +538,8 @@ class SendPageState extends State<SendPage> {
                     ),
                     const SizedBox(height: 16),
                     // 连接状态和发送按钮
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    Wrap(
+                      alignment: WrapAlignment.spaceBetween,
                       children: [
                         Text(
                           _isRconConnected
@@ -550,11 +550,11 @@ class SendPageState extends State<SendPage> {
                             fontWeight: FontWeight.bold,
                           ),
                         ),
-                        Row(
+                        Wrap(
                           children: [
                             ElevatedButton.icon(
                               onPressed: _isRconLoading ? null : _connectRcon,
-                              icon: _isRconLoading 
+                              icon: _isRconLoading
                                 ? const SizedBox(
                                     width: 16,
                                     height: 16,
