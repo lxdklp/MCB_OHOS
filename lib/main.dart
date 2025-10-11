@@ -3,6 +3,8 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:mcb/server.dart';
 import 'package:mcb/setting.dart';
 import 'package:package_info_plus/package_info_plus.dart';
+import 'package:url_launcher/url_launcher.dart';
+import 'package:dio/dio.dart';
 import 'package:mcb/function/log.dart';
 
 // 日志
@@ -195,6 +197,83 @@ class _MyHomePageState extends State<MyHomePage> {
     setState(() {
       _selectedIndex = index;
     });
+  }
+
+
+  // 打开URL
+  Future<void> _launchURL(String url) async {
+    try {
+      final Uri uri = Uri.parse(url);
+      if (await canLaunchUrl(uri)) {
+        await launchUrl(uri, mode: LaunchMode.externalApplication);
+      } else {
+        if (!mounted) return;
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('无法打开链接: $url')),
+        );
+      }
+    } catch (e) {
+      if (!mounted) return;
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('发生错误: $e')),
+      );
+    }
+  }
+
+  // 检查更新
+  Future<void> _checkUpdate() async {
+    try {
+      final PackageInfo packageInfo = await PackageInfo.fromPlatform();
+      String appVersion = packageInfo.version;
+      int buildNumber = int.tryParse(packageInfo.buildNumber) ?? 0;
+      LogUtil.log('检查更新...,ua MCB/$appVersion', level: 'INFO');
+      final dio = Dio();
+      dio.options.headers['User-Agent'] = 'FML/$appVersion';
+      final response = await dio.get('https://api.lxdklp.top/v1/mcb/get_version');
+      LogUtil.log('status: ${response.statusCode}', level: 'INFO');
+      LogUtil.log('data: ${response.data}', level: 'INFO');
+      if (response.statusCode == 200) {
+        String rawVersionData = response.data.toString();
+        String cleanedVersionString = rawVersionData.replaceAll("[", "").replaceAll("]", "");
+        final int latestVersion = int.tryParse(cleanedVersionString) ?? buildNumber;
+        LogUtil.log('最新版本: $latestVersion');
+        if (latestVersion > buildNumber && mounted) {
+          _showUpdateDialog(latestVersion.toString());
+        }
+      }
+    } catch (e) {
+      LogUtil.log(e.toString(), level: 'ERROR');
+    }
+  }
+
+
+  Future<void> _showUpdateDialog(String latestVersion) async{
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: const Text('发现新版本'),
+        content: const Text('检测到新版本'),
+        actions: [
+          TextButton(
+            onPressed: () async {
+              _launchURL('https://github.com/lxdklp/MCB_OHOS/releases/');
+            },
+            child: const Text('前往Gtihub下载'),
+          ),
+          TextButton(
+            onPressed: () => Navigator.of(context).pop(),
+            child: const Text('取消'),
+          ),
+        ],
+      ),
+    );
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    // 检查更新
+      _checkUpdate();
   }
 
   @override
