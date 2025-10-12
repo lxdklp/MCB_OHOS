@@ -228,7 +228,7 @@ class _MyHomePageState extends State<MyHomePage> {
       int buildNumber = int.tryParse(packageInfo.buildNumber) ?? 0;
       LogUtil.log('检查更新...,ua MCB/$appVersion', level: 'INFO');
       final dio = Dio();
-      dio.options.headers['User-Agent'] = 'FML/$appVersion';
+      dio.options.headers['User-Agent'] = 'MCB/$appVersion';
       final response = await dio.get('https://api.lxdklp.top/v1/mcb/get_version');
       LogUtil.log('status: ${response.statusCode}', level: 'INFO');
       LogUtil.log('data: ${response.data}', level: 'INFO');
