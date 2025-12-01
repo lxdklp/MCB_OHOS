@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:mcb/function/log.dart';
+import 'package:mcb/function/crypto_util.dart';
 
 class AddServerPage extends StatefulWidget {
   const AddServerPage({super.key});
@@ -124,10 +125,12 @@ class AddServerPageState extends State<AddServerPage> {
     }
     servers.add(name);
     await prefs.setStringList('servers', servers);
-    List<String> serverConfig = [name, address, rpcPort, token, _tls, _unsafe, _rcon, rconPort, password];
+    String encryptedToken = await CryptoUtil.encrypt(token);
+    String encryptedRconPassword = await CryptoUtil.encrypt(password);
+    List<String> serverConfig = [name, address, rpcPort, encryptedToken, _tls, _unsafe, _rcon, rconPort, encryptedRconPassword];
     await prefs.setStringList('${name}_config', serverConfig);
     LogUtil.log(
-      '保存服务器: $name, 地址: $address, 端口: $rpcPort, 令牌: $token, TLS: $_tls, 允许不安全: $_unsafe, RCON: $_rcon, RCON 端口: $rconPort, RCON 密码: $password',
+      '已保存服务器: $name',
       level: 'INFO'
     );
     if (!mounted) return;
@@ -370,7 +373,7 @@ class AddServerPageState extends State<AddServerPage> {
                         decoration: InputDecoration(
                           labelText: '密码',
                           hintText: '请输入 RCON 密码',
-                          border: const OutlineInputBorder(),
+                          border: OutlineInputBorder(),
                           suffixIcon: IconButton(
                             icon: Icon(_obscurePassword ? Icons.visibility : Icons.visibility_off),
                             onPressed: _togglePasswordVisibility,

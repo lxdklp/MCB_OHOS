@@ -8,7 +8,7 @@ import 'package:dio/dio.dart';
 import 'package:mcb/function/log.dart';
 
 // 日志
-_initLogs() async {
+Future<void> _initLogs() async {
   final PackageInfo packageInfo = await PackageInfo.fromPlatform();
   String appVersion = packageInfo.version;
   int buildNumber = int.tryParse(packageInfo.buildNumber) ?? 0;
@@ -228,7 +228,7 @@ class _MyHomePageState extends State<MyHomePage> {
       int buildNumber = int.tryParse(packageInfo.buildNumber) ?? 0;
       LogUtil.log('检查更新...,ua MCB/$appVersion', level: 'INFO');
       final dio = Dio();
-      dio.options.headers['User-Agent'] = 'MCB/$appVersion';
+      dio.options.headers['User-Agent'] = 'MCB/$appVersion/ohos';
       final response = await dio.get('https://api.lxdklp.top/v1/mcb/get_version');
       LogUtil.log('status: ${response.statusCode}', level: 'INFO');
       LogUtil.log('data: ${response.data}', level: 'INFO');
