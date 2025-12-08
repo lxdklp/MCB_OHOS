@@ -22,12 +22,19 @@ jobs:
         run: |
           echo "FLUTTER_HOME=$HOME/flutter_ohos" >> $GITHUB_ENV
           echo "$HOME/flutter_ohos/bin" >> $GITHUB_PATH
+          echo "FLUTTER_GIT_URL=https://gitcode.com/openharmony-tpc/flutter_flutter.git" >> $GITHUB_ENV
+
+      - name: 初始化 Flutter
+        run: |
+          chmod +x $HOME/flutter_ohos/bin/flutter || true
+          $HOME/flutter_ohos/bin/flutter --version || true
+          $HOME/flutter_ohos/bin/flutter precache --linux || true
 
       - name: 验证 Flutter
-        run: flutter --version
+        run: $HOME/flutter_ohos/bin/flutter --version
 
       - name: 安装依赖
-        run: flutter pub get
+        run: $HOME/flutter_ohos/bin/flutter pub get
 
       - name: 运行分析
-        run: flutter analyze
+        run: $HOME/flutter_ohos/bin/flutter analyze
